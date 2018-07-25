@@ -9,6 +9,8 @@ import com.ogulcan.android.mvp.app.di.component.DaggerActivityComponent
 import com.ogulcan.android.mvp.app.di.module.ActivityModule
 import com.ogulcan.android.mvp.app.ui.about.AboutFragment
 import com.ogulcan.android.mvp.app.ui.list.ListFragment
+import com.ogulcan.android.mvp.app.util.NotificationUtils
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -17,12 +19,15 @@ import javax.inject.Inject
 class MainActivity: AppCompatActivity(), MainContract.View {
 
     @Inject lateinit var presenter: MainContract.Presenter
-
+    private val mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
+    private var mNotified = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (!mNotified) {
+            NotificationUtils().setNotification(mNotificationTime, this@MainActivity)
+        }
         injectDependency()
-
         presenter.attach(this)
     }
 

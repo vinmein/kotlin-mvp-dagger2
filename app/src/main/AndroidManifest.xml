@@ -19,5 +19,17 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".util.AlarmReceiver"
+            android:enabled="true" />
+        <!--<activity-->
+            <!--android:name=".ResultActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:label="@string/notification"-->
+            <!--android:launchMode="singleTask"-->
+            <!--android:taskAffinity="" />-->
+        <service
+            android:name=".util.NotificationService"
+            android:enabled="true" />
     </application>
 </manifest>

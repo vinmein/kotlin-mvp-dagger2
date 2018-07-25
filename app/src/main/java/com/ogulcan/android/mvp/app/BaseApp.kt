@@ -4,6 +4,8 @@ import android.app.Application
 import com.ogulcan.android.mvp.app.di.component.ApplicationComponent
 import com.ogulcan.android.mvp.app.di.component.DaggerApplicationComponent
 import com.ogulcan.android.mvp.app.di.module.ApplicationModule
+import com.ogulcan.android.mvp.app.util.NotificationUtils
+import java.util.*
 
 /**
  * Created by ogulcan on 07/02/2018.
@@ -12,11 +14,13 @@ class BaseApp: Application() {
 
     lateinit var component: ApplicationComponent
 
+
     override fun onCreate() {
         super.onCreate()
 
         instance = this
         setup()
+
 
         if (BuildConfig.DEBUG) {
             // Maybe TimberPlant etc.
